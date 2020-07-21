@@ -1,18 +1,14 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 using Puc.Minas.Banking.IoC;
 using Puc.Minas.Banking.WebApi.Config.Swagger;
+using Puc.Minas.Banking.WebApi.Helpers.Filters;
 
 namespace Puc.Minas.Banking.WebApi
 {
@@ -37,9 +33,15 @@ namespace Puc.Minas.Banking.WebApi
                 })
                 .SetCompatibilityVersion(CompatibilityVersion.Latest);
 
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings()
+            {
+                ContractResolver = new CamelCasePropertyNamesContractResolver()
+            };
+
             services.RegisterDependencies(Configuration);
 
-            services.AddControllers();
+            services.AddScoped<HandlingExceptionFilter>();
+
 
             services.AddSwaggerGen(c =>
             {
