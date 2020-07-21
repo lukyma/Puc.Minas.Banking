@@ -1,0 +1,80 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30225.117
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "0 - Application", "0 - Application", "{8AE1CFB4-141B-460B-A04E-A2FD69FE2DC9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1 - Service", "1 - Service", "{3C639285-3277-4BD0-965E-CCF82DD5C343}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2 - Domain", "2 - Domain", "{D8D1C8BD-B820-42CC-B508-2B92315AA2B0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3 - Infra", "3 - Infra", "{DB7F886A-6C10-4690-8EDD-EB420A6145B9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puc.Minas.Banking.Domain", "Puc.Minas.Banking.Domain\Puc.Minas.Banking.Domain.csproj", "{F8262595-0C9A-4185-A5CF-BA65DA9FB0C7}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4 - Tests", "4 - Tests", "{75914510-1B21-48E1-971D-7EEE64FFF5DC}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puc.Minas.Banking.Test", "Puc.Minas.Banking.Test\Puc.Minas.Banking.Test.csproj", "{DA44B026-5988-42BD-9E10-F4E355111A0D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puc.Minas.Banking.Service", "Puc.Minas.Banking.Service\Puc.Minas.Banking.Service.csproj", "{36414BF8-B1F5-4F5D-B028-2A5CFF2B6828}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puc.Minas.Banking.Context", "Puc.Minas.Banking.Context\Puc.Minas.Banking.Context.csproj", "{8DED57A2-2D43-48AF-B3BE-7FD3DAF758E0}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puc.Minas.Banking.WebApi", "Puc.Minas.Banking.WebApi\Puc.Minas.Banking.WebApi.csproj", "{27239039-FBF0-4F0F-8349-8CDCC8C9EF30}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Puc.Minas.Banking.IoC", "Puc.Minas.Banking.IoC\Puc.Minas.Banking.IoC.csproj", "{29A164A0-E585-46AB-A47A-B5D29A5FECEB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Puc.Minas.Banking.ExternalAPIService", "Puc.Minas.Banking.ExternalAPIService\Puc.Minas.Banking.ExternalAPIService.csproj", "{13E597D0-8EAB-4C76-9002-9A9B28E2D6E5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F8262595-0C9A-4185-A5CF-BA65DA9FB0C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8262595-0C9A-4185-A5CF-BA65DA9FB0C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8262595-0C9A-4185-A5CF-BA65DA9FB0C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8262595-0C9A-4185-A5CF-BA65DA9FB0C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA44B026-5988-42BD-9E10-F4E355111A0D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA44B026-5988-42BD-9E10-F4E355111A0D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA44B026-5988-42BD-9E10-F4E355111A0D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA44B026-5988-42BD-9E10-F4E355111A0D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{36414BF8-B1F5-4F5D-B028-2A5CFF2B6828}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{36414BF8-B1F5-4F5D-B028-2A5CFF2B6828}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{36414BF8-B1F5-4F5D-B028-2A5CFF2B6828}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{36414BF8-B1F5-4F5D-B028-2A5CFF2B6828}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DED57A2-2D43-48AF-B3BE-7FD3DAF758E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DED57A2-2D43-48AF-B3BE-7FD3DAF758E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DED57A2-2D43-48AF-B3BE-7FD3DAF758E0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DED57A2-2D43-48AF-B3BE-7FD3DAF758E0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27239039-FBF0-4F0F-8349-8CDCC8C9EF30}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27239039-FBF0-4F0F-8349-8CDCC8C9EF30}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27239039-FBF0-4F0F-8349-8CDCC8C9EF30}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27239039-FBF0-4F0F-8349-8CDCC8C9EF30}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29A164A0-E585-46AB-A47A-B5D29A5FECEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29A164A0-E585-46AB-A47A-B5D29A5FECEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29A164A0-E585-46AB-A47A-B5D29A5FECEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29A164A0-E585-46AB-A47A-B5D29A5FECEB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{13E597D0-8EAB-4C76-9002-9A9B28E2D6E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{13E597D0-8EAB-4C76-9002-9A9B28E2D6E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{13E597D0-8EAB-4C76-9002-9A9B28E2D6E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{13E597D0-8EAB-4C76-9002-9A9B28E2D6E5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F8262595-0C9A-4185-A5CF-BA65DA9FB0C7} = {D8D1C8BD-B820-42CC-B508-2B92315AA2B0}
+		{DA44B026-5988-42BD-9E10-F4E355111A0D} = {75914510-1B21-48E1-971D-7EEE64FFF5DC}
+		{36414BF8-B1F5-4F5D-B028-2A5CFF2B6828} = {3C639285-3277-4BD0-965E-CCF82DD5C343}
+		{8DED57A2-2D43-48AF-B3BE-7FD3DAF758E0} = {DB7F886A-6C10-4690-8EDD-EB420A6145B9}
+		{27239039-FBF0-4F0F-8349-8CDCC8C9EF30} = {8AE1CFB4-141B-460B-A04E-A2FD69FE2DC9}
+		{29A164A0-E585-46AB-A47A-B5D29A5FECEB} = {DB7F886A-6C10-4690-8EDD-EB420A6145B9}
+		{13E597D0-8EAB-4C76-9002-9A9B28E2D6E5} = {DB7F886A-6C10-4690-8EDD-EB420A6145B9}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BFEDE917-726F-46C0-87FB-AC74BC3276B0}
+	EndGlobalSection
+EndGlobal

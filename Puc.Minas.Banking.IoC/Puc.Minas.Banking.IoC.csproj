@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="3.1.6" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Puc.Minas.Banking.Context\Puc.Minas.Banking.Context.csproj" />
+    <ProjectReference Include="..\Puc.Minas.Banking.ExternalAPIService\Puc.Minas.Banking.ExternalAPIService.csproj" />
+    <ProjectReference Include="..\Puc.Minas.Banking.Service\Puc.Minas.Banking.Service.csproj" />
+  </ItemGroup>
+
+</Project>
