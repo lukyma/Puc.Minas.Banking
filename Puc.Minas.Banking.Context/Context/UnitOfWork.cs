@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore.Storage;
 using Puc.Minas.Banking.Domain.Interface.Core;
 using System;
+using System.Threading.Tasks;
 
 namespace Puc.Minas.Banking.Context.Context
 {
@@ -37,6 +38,11 @@ namespace Puc.Minas.Banking.Context.Context
         public int SaveChanges()
         {
             return context.SaveChanges();
+        }
+
+        public Task<int> SaveChangesAsync()
+        {
+            return context.SaveChangesAsync();
         }
     }
 }

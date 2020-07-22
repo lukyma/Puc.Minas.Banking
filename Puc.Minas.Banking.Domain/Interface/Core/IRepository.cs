@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Puc.Minas.Banking.Domain.Interface.Core
 {
@@ -11,6 +12,7 @@ namespace Puc.Minas.Banking.Domain.Interface.Core
         void Remove(T entity);
         void Update(T entity);
         T Get(int id);
+        Task<T> GetAsync(int id);
         IQueryable<T> GetAll();
     }
 }

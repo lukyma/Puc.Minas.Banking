@@ -8,29 +8,37 @@ using System.Threading.Tasks;
 
 namespace Puc.Minas.Banking.WebApi.Helpers.Filters
 {
-    public class HandlingExceptionFilter : ControllerBase, IAsyncExceptionFilter
+    public class HandlingExceptionFilter : ActionFilterAttribute
     {
-        public async Task OnExceptionAsync(ExceptionContext context)
+        public override void OnActionExecuting(ActionExecutingContext context)
         {
-            object genericException = new
+            if (!context.ModelState.IsValid)
             {
-                code = "500",
-                message = "Ocorreu um erro não identificado"
-            };
-            if (context.Exception is RuleException)
-            {
-                RuleException ruleException = context.Exception as RuleException;
-
-                genericException = new
-                {
-                    code = ruleException.Code,
-                    message = ruleException.Message
-                };
-
-                context.Result = BadRequest(genericException);
-                return;
+                context.Result = new BadRequestObjectResult(context.ModelState);
             }
-            context.Result = BadRequest(genericException);
         }
+
+        //public async Task OnExceptionAsync(ExceptionContext context)
+        //{
+        //    object genericException = new
+        //    {
+        //        code = "500",
+        //        message = "Ocorreu um erro não identificado"
+        //    };
+        //    if (context.Exception is RuleException)
+        //    {
+        //        RuleException ruleException = context.Exception as RuleException;
+
+        //        genericException = new
+        //        {
+        //            code = ruleException.Code,
+        //            message = ruleException.Message
+        //        };
+
+        //        context.Result = BadRequest(genericException);
+        //        return;
+        //    }
+        //    context.Result = BadRequest(genericException);
+        //}
     }
 }

@@ -1,4 +1,5 @@
 ﻿using Puc.Minas.Banking.Domain.Entity;
+using Puc.Minas.Banking.Domain.Entity.Notification;
 using Puc.Minas.Banking.Domain.Interface;
 using Puc.Minas.Banking.Domain.Interface.Core;
 using Puc.Minas.Banking.Domain.Interface.Repository;
@@ -12,39 +13,11 @@ namespace Puc.Minas.Banking.Service.Service
 {
     public class ContaCorrenteService : Service<ContaCorrente>, IContaCorrenteService
     {
-        public ContaCorrenteService(IContaCorrenteRepository repository) : base(repository)
+        public ContaCorrenteService(IContaCorrenteRepository repository,
+                                    INotificationHandler<DomainNotification> notificationHandler) 
+            : base(repository, notificationHandler)
         {
 
-        }
-
-        public ContaCorrente CreditarValorConta(decimal valor, int numeroConta, int digito)
-        {
-            ContaCorrente contaCorrente = GetAll().FirstOrDefault(o => o.Numero == numeroConta && 
-                                                                       o.Digito == digito);
-            contaCorrente.Movimentacoes.Add(new Movimentacao()
-            {
-                Valor = valor,
-                Operacao = TipoOperacao.Credito
-            });
-
-            Update(contaCorrente);
-
-            return contaCorrente;
-        }
-
-        public ContaCorrente DebitarValorConta(decimal valor, int numeroConta, int digito)
-        {
-            ContaCorrente contaCorrente = GetAll().FirstOrDefault(o => o.Numero == numeroConta &&
-                                                                       o.Digito == digito);
-            contaCorrente.Movimentacoes.Add(new Movimentacao()
-            {
-                Valor = valor,
-                Operacao = TipoOperacao.Debito
-            });
-
-            Update(contaCorrente);
-
-            return contaCorrente;
         }
     }
 }

@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Puc.Minas.Banking.Context.Repository.Core
 {
@@ -26,6 +27,11 @@ namespace Puc.Minas.Banking.Context.Repository.Core
         public T Get(int id)
         {
             return DbSet.Find(id);
+        }
+
+        public async Task<T> GetAsync(int id)
+        {
+            return await DbSet.FindAsync(id);
         }
 
         public virtual IQueryable<T> GetAll()

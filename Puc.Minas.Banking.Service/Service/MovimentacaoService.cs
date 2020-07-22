@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Puc.Minas.Banking.Domain.Entity;
+using Puc.Minas.Banking.Domain.Entity.Notification;
 using Puc.Minas.Banking.Domain.Interface.Core;
 using Puc.Minas.Banking.Domain.Interface.Repository;
 using Puc.Minas.Banking.Domain.Interface.Service;
@@ -16,9 +17,11 @@ namespace Puc.Minas.Banking.Service.Service
     {
         private IContaCorrenteRepository contaCorrenteRepository { get; }
         private ICoafApiService coafApiService { get; }
-        public MovimentacaoService(IMovimentacaoRepository movimentacaoRepository, 
+        public MovimentacaoService(IMovimentacaoRepository movimentacaoRepository,
                                    IContaCorrenteRepository contaCorrente,
-                                   ICoafApiService coafApiService) : base(movimentacaoRepository)
+                                   ICoafApiService coafApiService,
+                                   INotificationHandler<DomainNotification> notificationHandler)
+            : base(movimentacaoRepository, notificationHandler)
         {
             this.contaCorrenteRepository = contaCorrente;
             this.coafApiService = coafApiService;
