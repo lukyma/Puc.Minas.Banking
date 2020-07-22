@@ -7,5 +7,7 @@ namespace Puc.Minas.Banking.Domain.Interface
 {
     public interface IContaCorrenteService : IService<ContaCorrente>
     {
+        Movimentacao Depositar(decimal valor, int numeroConta, int digito);
+        Movimentacao Debitar(decimal valor, int numeroConta, int digito);
     }
 }

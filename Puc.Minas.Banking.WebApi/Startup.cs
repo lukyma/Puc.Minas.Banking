@@ -50,7 +50,7 @@ namespace Puc.Minas.Banking.WebApi
             };
 
             services.RegisterDependencies(Configuration);
-
+            services.AddScoped<HandlingExceptionFilter>();
 
             services.AddSwaggerGen(c =>
             {

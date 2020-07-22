@@ -27,12 +27,13 @@ namespace Puc.Minas.Banking.Service.Notification
 
         public bool HandleValidateAsync<T>(IValidator<T> notification, T entity)
         {
-            foreach (var item in notification.Validate<T>(entity).Errors)
+            var validate = notification.Validate<T>(entity);
+            foreach (var item in validate.Errors)
             {
                 HandleAsync(new DomainNotification(item.ErrorCode, item.ErrorMessage));
             }
 
-            return notification.Validate<T>(entity).IsValid;
+            return validate.IsValid;
         }
 
         public bool HasNotifications()

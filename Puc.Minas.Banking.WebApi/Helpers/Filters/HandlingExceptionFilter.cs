@@ -8,37 +8,29 @@ using System.Threading.Tasks;
 
 namespace Puc.Minas.Banking.WebApi.Helpers.Filters
 {
-    public class HandlingExceptionFilter : ActionFilterAttribute
+    public class HandlingExceptionFilter : ControllerBase, IAsyncExceptionFilter
     {
-        public override void OnActionExecuting(ActionExecutingContext context)
+        public async Task OnExceptionAsync(ExceptionContext context)
         {
-            if (!context.ModelState.IsValid)
+            object genericException = new
             {
-                context.Result = new BadRequestObjectResult(context.ModelState);
+                code = "500",
+                message = "Ocorreu um erro não identificado"
+            };
+            if (context.Exception is RuleException)
+            {
+                RuleException ruleException = context.Exception as RuleException;
+
+                genericException = new
+                {
+                    code = ruleException.Code,
+                    message = ruleException.Message
+                };
+
+                context.Result = await Task.FromResult(BadRequest(genericException));
+                return;
             }
+            context.Result = await Task.FromResult(BadRequest(genericException));
         }
-
-        //public async Task OnExceptionAsync(ExceptionContext context)
-        //{
-        //    object genericException = new
-        //    {
-        //        code = "500",
-        //        message = "Ocorreu um erro não identificado"
-        //    };
-        //    if (context.Exception is RuleException)
-        //    {
-        //        RuleException ruleException = context.Exception as RuleException;
-
-        //        genericException = new
-        //        {
-        //            code = ruleException.Code,
-        //            message = ruleException.Message
-        //        };
-
-        //        context.Result = BadRequest(genericException);
-        //        return;
-        //    }
-        //    context.Result = BadRequest(genericException);
-        //}
     }
 }

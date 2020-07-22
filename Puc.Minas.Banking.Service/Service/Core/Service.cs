@@ -105,5 +105,10 @@ namespace Puc.Minas.Banking.Service.Service.Core
         {
             return await Repository.GetAsync(id);
         }
+
+        public void Update(T entity, params object[] id)
+        {
+            Repository.Update(entity, id);
+        }
     }
 }

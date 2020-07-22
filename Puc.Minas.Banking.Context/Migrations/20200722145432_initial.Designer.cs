@@ -9,8 +9,8 @@ using Puc.Minas.Banking.Context.Context;
 namespace Puc.Minas.Banking.Context.Migrations
 {
     [DbContext(typeof(PucMinasBankingContext))]
-    [Migration("20200721172604_InitialMigration")]
-    partial class InitialMigration
+    [Migration("20200722145432_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

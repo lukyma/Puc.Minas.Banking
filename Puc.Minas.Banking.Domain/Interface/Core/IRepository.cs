@@ -11,6 +11,7 @@ namespace Puc.Minas.Banking.Domain.Interface.Core
         void Add(T entity);
         void Remove(T entity);
         void Update(T entity);
+        void Update(T entity, params object[] id);
         T Get(int id);
         Task<T> GetAsync(int id);
         IQueryable<T> GetAll();

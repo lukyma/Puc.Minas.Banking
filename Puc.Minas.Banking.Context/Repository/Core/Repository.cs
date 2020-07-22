@@ -48,5 +48,10 @@ namespace Puc.Minas.Banking.Context.Repository.Core
         {
             DbSet.Update(entity);
         }
+
+        public void Update(T entity, params object[] id)
+        {
+            DbSet.Update(DbSet.Find(id)).CurrentValues.SetValues(entity);
+        }
     }
 }

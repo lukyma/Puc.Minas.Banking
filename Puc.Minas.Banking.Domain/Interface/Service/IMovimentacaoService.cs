@@ -7,6 +7,7 @@ namespace Puc.Minas.Banking.Domain.Interface.Service
 {
     public interface IMovimentacaoService : IService<Movimentacao>
     {
-        Movimentacao AdicionarMovimentacao(decimal valor, int numeroConta, int digito, TipoOperacao operacao);
+        Movimentacao Depositar(decimal valor, int numeroConta, int digito);
+        Movimentacao Debitar(decimal valor, int numeroConta, int digito);
     }
 }

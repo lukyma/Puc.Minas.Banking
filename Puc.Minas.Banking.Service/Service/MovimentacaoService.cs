@@ -32,29 +32,23 @@ namespace Puc.Minas.Banking.Service.Service
             return base.GetAll();
         }
 
-        public Movimentacao AdicionarMovimentacao(decimal valor, int numeroConta, int digito, TipoOperacao operacao)
+        public Movimentacao Debitar(decimal valor, int numeroConta, int digito)
+        {
+            return RegistarMovimentacao(valor, numeroConta, digito, TipoOperacao.Debito);
+        }
+
+        public Movimentacao Depositar(decimal valor, int numeroConta, int digito)
+        {
+            return RegistarMovimentacao(valor, numeroConta, digito, TipoOperacao.Credito);
+        }
+
+        private Movimentacao RegistarMovimentacao(decimal valor, int numeroConta, int digito, TipoOperacao operacao)
         {
             ContaCorrente contaCorrente = contaCorrenteRepository.GetAll().FirstOrDefault(o => o.Numero == numeroConta && o.Digito == digito);
 
-            Movimentacao ultimaMovimentacao = contaCorrente.Movimentacoes
-                                         .OrderByDescending(o => o.DataMovimentacao)
-                                         .FirstOrDefault();
+            Movimentacao movimentacao = contaCorrente.Movimentar(valor, operacao);
 
-            Movimentacao movimentacao = new Movimentacao()
-            {
-                IdContaCorrente = contaCorrente.Id,
-                ContaCorrente = contaCorrente,
-                Operacao = operacao,
-                Valor = valor,
-                DataMovimentacao = DateTime.Now,
-                IdUltimaMovimentacao = ultimaMovimentacao?.Id,
-                UltimaMovimentacao = ultimaMovimentacao,
-                UltimoSaldo = ultimaMovimentacao?.UltimoSaldo ?? 0
-            };
-
-            Add(movimentacao);
-
-            if(movimentacao.Coaf != null)
+            if (movimentacao.Coaf != null)
             {
                 coafApiService.EnviarNotificacaoCoaf(valor, contaCorrente);
             }

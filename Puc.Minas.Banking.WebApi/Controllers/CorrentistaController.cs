@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Puc.Minas.Banking.Context.Context;
@@ -35,8 +36,9 @@ namespace Puc.Minas.Banking.WebApi.Controllers
         public async Task<IActionResult> Post([FromBody] CorrentistaVM correntista)
         {
             Correntista request = mapper.Map<CorrentistaVM, Correntista>(correntista);
+            request.ContaCorrentes = new List<ContaCorrente>();
             correntistaService.Add(request);
-            unitOfWork.SaveChanges();
+            await unitOfWork.SaveChangesAsync();
             return Response(correntista, $"api/correntista/{request.Id}");
         }
 

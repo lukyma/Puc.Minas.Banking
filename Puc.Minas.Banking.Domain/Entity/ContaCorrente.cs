@@ -1,4 +1,5 @@
-﻿using Puc.Minas.Banking.Domain.Exception;
+﻿using FluentValidation;
+using Puc.Minas.Banking.Domain.Exception;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -30,6 +31,34 @@ namespace Puc.Minas.Banking.Domain.Entity
         public decimal LimiteCredito { get; set; }
         public virtual Correntista Correntista { get; set; }
         public virtual ICollection<Movimentacao> Movimentacoes { get; set; }
+
+        public Movimentacao Movimentar(decimal valor, TipoOperacao operacao)
+        {
+            Movimentacao ultimaMovimentacao = Movimentacoes.OrderByDescending(o => o.DataMovimentacao)
+                                             .FirstOrDefault();
+
+            var movimentacao = new Movimentacao()
+            {
+                IdContaCorrente = Id,
+                ContaCorrente = this,
+                Operacao = operacao,
+                Valor = valor,
+                DataMovimentacao = DateTime.Now,
+                IdUltimaMovimentacao = ultimaMovimentacao?.Id,
+                UltimaMovimentacao = ultimaMovimentacao,
+                UltimoSaldo = ultimaMovimentacao?.UltimoSaldo ?? 0
+            };
+
+            if((movimentacao.Operacao == TipoOperacao.Debito
+                   && (movimentacao.UltimoSaldo + (-1 * movimentacao.Valor)) < -2500))
+            {
+                throw new RuleException("Você atingiu o limite de crédito", "005");
+            }
+
+            Movimentacoes.Add(movimentacao);
+
+            return movimentacao;
+        }
 
         public void ValidarLimiteCredito(decimal saldoPosterior)
         {

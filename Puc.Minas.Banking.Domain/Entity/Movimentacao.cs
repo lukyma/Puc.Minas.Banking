@@ -48,10 +48,10 @@ namespace Puc.Minas.Banking.Domain.Entity
                     {
                         ultimoSaldo -= UltimaMovimentacao.Valor;
                     }
-                    if(Operacao == TipoOperacao.Debito)
-                    {
-                        ContaCorrente.ValidarLimiteCredito(ultimoSaldo + (Valor * -1));
-                    }
+                    //if(Operacao == TipoOperacao.Debito)
+                    //{
+                    //    ContaCorrente.ValidarLimiteCredito(ultimoSaldo + (Valor * -1));
+                    //}
                 }
             }
         }

@@ -28,7 +28,7 @@ namespace Puc.Minas.Banking.Service.Service
                 NotificationHandler.HandleAsync(new DomainNotification("004", "Já existe um cliente com o CPF informado!"));
                 return;
             }
-            Add(entity);
+            base.Add(entity);
         }
     }
 }

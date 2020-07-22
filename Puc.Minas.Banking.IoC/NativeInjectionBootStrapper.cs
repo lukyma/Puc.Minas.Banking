@@ -52,6 +52,7 @@ namespace Puc.Minas.Banking.IoC
             services.AddScoped<IMovimentacaoService, MovimentacaoService>();
             services.AddScoped<ICoafApiService, CoafApiService>();
             services.AddTransient<IValidator<Correntista>, CorrentistaValidation>();
+            services.AddTransient<IValidator<Movimentacao>, MovimentacaoValidation>();
         }
 
         private static void RegisterRepositories(IServiceCollection services)

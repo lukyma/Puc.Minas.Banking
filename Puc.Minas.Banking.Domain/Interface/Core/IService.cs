@@ -14,6 +14,7 @@ namespace Puc.Minas.Banking.Domain.Interface
         void Remove(int id);
         void Update<V>(T entity) where V : AbstractValidator<T>;
         void Update(T entity);
+        void Update(T entity, params object[] id);
         T Get(int id);
         Task<T> GetAsync(int id);
         IQueryable<T> GetAll();

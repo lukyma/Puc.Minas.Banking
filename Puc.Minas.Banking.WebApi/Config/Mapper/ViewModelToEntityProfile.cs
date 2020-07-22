@@ -18,6 +18,7 @@ namespace Puc.Minas.Banking.WebApi.Config.Mapper
             CreateMap<EnderecoVM, Endereco>();
             CreateMap<Endereco, EnderecoVM>();
             CreateMap<ContaCorrenteVM, ContaCorrente>();
+            CreateMap<ContaCorrente, ContaCorrenteVM>();
         }
     }
 }
