@@ -1,4 +1,5 @@
-﻿using FluentValidation;
+﻿using AutoMapper;
+using FluentValidation;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,6 +32,16 @@ namespace Puc.Minas.Banking.IoC
             services.AddScoped<INotificationHandler<DomainNotification>, DomainNotificationHandler>();
             RegisterServices(services);
             RegisterRepositories(services);
+
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddMaps(new[] {
+                    "Puc.Minas.Banking.WebApi"
+                });
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
         }
 
         private static void RegisterServices(IServiceCollection services)

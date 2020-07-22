@@ -1,4 +1,5 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Puc.Minas.Banking.Context.Context;
 using Puc.Minas.Banking.Domain.Entity;
@@ -7,6 +8,7 @@ using Puc.Minas.Banking.Domain.Interface.Core;
 using Puc.Minas.Banking.Domain.Interface.Service;
 using Puc.Minas.Banking.Service.Validation;
 using Puc.Minas.Banking.WebApi.Helpers.Filters;
+using Puc.Minas.Banking.WebApi.Model;
 
 namespace Puc.Minas.Banking.WebApi.Controllers
 {
@@ -16,33 +18,38 @@ namespace Puc.Minas.Banking.WebApi.Controllers
     {
         private ICorrentistaService correntistaService { get; }
         private IUnitOfWork unitOfWork { get; }
+        private IMapper mapper { get; }
         public CorrentistaController(ICorrentistaService correntistaService, 
                                      IUnitOfWork unitOfWork,
-                                     INotificationHandler<DomainNotification> notification):base(notification)
+                                     INotificationHandler<DomainNotification> notification,
+                                     IMapper mapper):base(notification)
         {
             this.correntistaService = correntistaService;
             this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(Correntista), 201)]
+        [ProducesResponseType(typeof(CorrentistaVM), 201)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Post([FromBody] Correntista correntista)
+        public async Task<IActionResult> Post([FromBody] CorrentistaVM correntista)
         {
-            correntistaService.Add(correntista);
+            Correntista request = mapper.Map<CorrentistaVM, Correntista>(correntista);
+            correntistaService.Add(request);
             unitOfWork.SaveChanges();
-            return Response(correntista, $"api/correntista/{correntista.Id}");
+            return Response(correntista, $"api/correntista/{request.Id}");
         }
 
         [HttpPut, Route("{id}")]
-        [ProducesResponseType(typeof(Correntista), 200)]
+        [ProducesResponseType(typeof(CorrentistaVM), 200)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Put(int id, [FromBody] Correntista correntista)
+        public async Task<IActionResult> Put(int id, [FromBody] CorrentistaVM correntista)
         {
-            correntista.Id = id;
-            correntistaService.Update(correntista);
+            Correntista request = mapper.Map<CorrentistaVM, Correntista>(correntista);
+            request.Id = id;
+            correntistaService.Update(request);
             await unitOfWork.SaveChangesAsync();
-            return Response(correntista);
+            return Response(mapper.Map<Correntista, CorrentistaVM>(request));
         }
 
         [HttpDelete, Route("{id}")]
@@ -56,13 +63,13 @@ namespace Puc.Minas.Banking.WebApi.Controllers
         }
 
         [HttpGet, Route("{id}")]
-        [ProducesResponseType(typeof(Correntista), 200)]
+        [ProducesResponseType(typeof(CorrentistaVM), 200)]
         [ProducesResponseType(204)]
         [ProducesResponseType(400)]
 
         public async Task<IActionResult> Get(int id)
         {
-            return Response(correntistaService.Get(id));
+            return Response(await correntistaService.GetAsync(id));
         }
     }
 }
